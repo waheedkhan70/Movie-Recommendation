@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinema Atlas | Movie Recommender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+
+  <main class="container">
+    <header class="hero">
+      
+      <h1>Movie Recommender</h1>
+      <p class="subtitle">Pick a movie you love and discover your next watch in seconds.</p>
+    </header>
+
+    <section class="panel">
+      <label for="movieInput">Choose a title</label>
+      <div class="input-row">
+        <input id="movieInput" list="movieOptions" placeholder="Start typing a movie title..." autocomplete="off" />
+        <button id="recommendBtn">Find Matches</button>
+      </div>
+      <datalist id="movieOptions">
+        {% for title in movie_titles %}
+          <option value="{{ title }}"></option>
+        {% endfor %}
+      </datalist>
+      <p id="message" class="message">Explore recommendations from your trained similarity model.</p>
+    </section>
+
+    <section class="results-wrap">
+      <h2>Recommendations</h2>
+      <div id="results" class="results-grid"></div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
